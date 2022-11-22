@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+
+  <link rel="stylesheet" href="../vendors/iconly/bold.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="../vendors/perfect-scrollbar/perfect-scrollbar.css">
+  <link rel="stylesheet" href="../vendors/bootstrap-icons/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <link rel="shortcut icon" href="../images/favicon.svg" type="image/x-icon">
+  <link rel="stylesheet" href="../vendors/toastify/toastify.css">
+
+  <!-- jquery and datatables script -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css" />
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap.min.js"></script>
+  <link rel="stylesheet" src="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css" />
+  <link rel="stylesheet" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+
+
+</head>
+
+<body>
+  <div id="app">
+    <div id="sidebar" class="active">
+      <div class="sidebar-wrapper active">
+        <div class="sidebar-header">
+          <div class="d-flex justify-content-between">
+            <div class="logo">
+              <a href="/dashboard">Demo</a>
+            </div>
+            <div class="toggler">
+              <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-menu">
+          <ul class="menu">
+            <li class="sidebar-item <%= (typeof page !== 'undefined' && page == 'dashboard') ? 'active' : '' %>">
+              <a href="/dashboard" class='sidebar-link'>
+                <i class="fa fa-users"></i>
+                <span>Users</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item <%= (typeof page !== 'undefined' && page == 'reports') ? 'active' : '' %>">
+              <a href="/profile" class='sidebar-link'>
+                <i class="fa fa-user"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a href="#" class='sidebar-link' id="logout">
+                <i class="fa-solid fa-power-off"></i>
+                <span>Log out</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="main">
+      <header class="mb-3">
+        <a href="#" class="burger-btn d-block d-xl-none" style="color: black;">
+          <i class="bi bi-justify fs-3"></i>
+        </a>
+      </header>

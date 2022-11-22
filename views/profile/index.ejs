@@ -1,0 +1,31 @@
+<%- include('../layouts/header') %>
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100 row">
+        <div class="d-inline" data-tilt>
+          <img src="../images/logo/logo.png" alt="IMG" style="height:150px; width: 150px; ">
+        </div>
+        <div class="d-inline-flex row">
+          <div class="col-2  fw-bold"><label> Name:</label></div>
+          <div class="col-10">
+            <%- user.fullName %>
+          </div>
+          <div class="col-2  fw-bold"><label> Date of Birth:</label></div>
+          <div class="col-10">
+            <%- user.dob %>
+          </div>
+          <div class="col-2  fw-bold"><label> Phone:</label></div>
+          <div class="col-10">
+            <%- user.phoneNumber %>
+          </div>
+          <div class="col-2  fw-bold"><label> Email:</label></div>
+          <div class="col-10">
+            <%- user.email %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <%- include('../layouts/footer') %>

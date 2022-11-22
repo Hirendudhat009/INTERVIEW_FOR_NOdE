@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Register</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../css/pages/util.css">
+  <link rel="stylesheet" type="text/css" href="../css/pages/main.css">
+  <!--===============================================================================================-->
+  <style>
+    #upload_link {
+      text-decoration: none;
+    }
+
+    .profile-pic {
+      max-width: 200px;
+      max-height: 200px;
+      display: block;
+      margin-top: 20px;
+    }
+
+    .custom-file-button input[type=file] {
+      margin-left: -2px !important;
+    }
+
+    .custom-file-button input[type=file]::-webkit-file-upload-button {
+      display: none;
+    }
+
+    .custom-file-button input[type=file]::file-selector-button {
+      display: none;
+    }
+
+    .custom-file-button:hover label {
+      background-color: #dde0e3;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <div class="login100-pic js-tilt" data-tilt>
+          <img src="../images/logo/logo.png" alt="IMG">
+        </div>
+
+        <form class="login100-form validate-form" id="registerForm" action="#">
+          <span class="login100-form-title">
+            Register
+          </span>
+
+
+          <div class="wrap-input100 validate-input">
+            <input class="input100" type="text" name="fullName" id="fullName" placeholder="Name" required>
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </span>
+            </small>
+          </div>
+          <div class="wrap-input100 validate-input">
+            <input class="input100" type="date" name="dob" id="dob" placeholder="Date of birth" required>
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+            </small>
+          </div>
+          <div class="wrap-input100 validate-input">
+            <input class="input100" type="number" name="phoneNumber" id="phoneNumber" placeholder="Mo.Number" required>
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+            </span>
+            </small>
+          </div>
+          <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+            <input class="input100" type="email" id="email" name="email" placeholder="Email" required>
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+            </span>
+            <small class="text-danger" style="color: red; display:none;" id="error">
+              Email is already exist
+            </small>
+          </div>
+
+          <div class="wrap-input100 validate-input" data-validate="Password is required">
+            <input class="input100" type="password" id="password" name="password" placeholder="Password" required>
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="fa fa-lock" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="container py-3">
+            <div class="input-group custom-file-button">
+              <label class="input-group-text mb-0 pt-2 px-2" id="upload" for="inputGroupFile"
+                style="background: #e6e6e6;" name="profileImage">Profile Image
+              </label>
+              <input type="file" name="profileImage" class="form-control" id="upload">
+            </div>
+
+          </div>
+
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn" id="register">
+              Register
+            </button>
+          </div>
+          <div class="text-center p-t-50">
+            <a class="txt2" href="/login">
+              Sign In
+              <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!--===============================================================================================-->
+  <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="../vendor/bootstrap/js/popper.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="../vendor/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="../vendor/tilt/tilt.jquery.min.js"></script>
+  <script>
+    var readURL = function (input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('.profile-pic').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#upload").on('change', function () {
+      readURL(this);
+    });
+
+    $('#register').click(function (e) {
+      e.preventDefault();
+      var form = $('#registerForm')[0];
+      var formData = new FormData(form);
+      fetch(`/register`,
+        {
+          method: "POST",
+          body: formData,
+          mode: 'cors',
+          cache: 'no-cache',
+          contentType: 'multipart/form-data',
+        })
+        .then(async function (res) {
+          const data = await res.json()
+          if (data.success) {
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: "Register successfully",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = '/login'
+              }
+            })
+          }
+          else {
+            $('#error').show()
+          }
+        })
+        .catch(function (res) {
+          console.log(res);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something is wrong",
+            confirmButtonColor: "#000000",
+          })
+        })
+    });
+
+  </script>
+  <!--===============================================================================================-->
+  <script src="js/main.js"></script>
+  <script src="../vendors/toastify/toastify.js"></script>
+  <script src="../vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+  <script src="../vendors/sweetalert2/sweetalert2.all.min.js"></script>
+
+</body>
+
+</html>
